@@ -20,6 +20,8 @@ namespace WinFormsApp16
             cmd.Parameters.AddWithValue("@Id", int.Parse(textBox1.Text));
             cmd.Parameters.AddWithValue("@Name", textBox2.Text);
             cmd.Parameters.AddWithValue("@Age", double.Parse(textBox3.Text));
+            cmd.ExecuteNonQuery();
+
             MessageBox.Show("Connection Open  !");
             cnn.Close();
 
