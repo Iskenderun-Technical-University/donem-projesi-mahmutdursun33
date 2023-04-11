@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 
 
@@ -46,6 +47,24 @@ namespace WinFormsApp16
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TNITFUT;Initial Catalog=kürüphane;Integrated Security=True");
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("delete uusertab where Id=@Id", cnn);
+            cmd.Parameters.AddWithValue("@Id", int.Parse(textBox1.Text));
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+            MessageBox.Show("delete iþlemi yapýldý");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TNITFUT;Initial Catalog=kürüphane;Integrated Security=True");
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("select * from uusertab", cnn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            dataGridView1.DataSource = dt;
 
         }
     }
