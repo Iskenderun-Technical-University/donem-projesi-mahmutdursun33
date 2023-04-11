@@ -23,8 +23,29 @@ namespace WinFormsApp16
             cmd.Parameters.AddWithValue("@Sayfa", double.Parse(textBox3.Text));
             cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Connection Open  !");
+            MessageBox.Show("create iþlemi yapýldý");
             cnn.Close();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TNITFUT;Initial Catalog=kürüphane;Integrated Security=True");
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("Update uusertab set Name=@Name,Author=@Author,Sayfa=@Sayfa where Id=@Id", cnn);
+
+            cmd.Parameters.AddWithValue("@Id", int.Parse(textBox1.Text));
+            cmd.Parameters.AddWithValue("@Name", textBox2.Text);
+            cmd.Parameters.AddWithValue("@Author", textBox4.Text);
+            cmd.Parameters.AddWithValue("@Sayfa", double.Parse(textBox3.Text));
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("update iþlemi yapýldý");
+            cnn.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
 
         }
     }
